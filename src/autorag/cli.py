@@ -6,6 +6,7 @@ from click import Context
 from typer.core import TyperGroup
 
 from autorag import __version__
+from autorag.configure.configure_system import configure_system
 from autorag.init.generate_system_specs import generate_system_specs, print_system_specs
 from autorag.logging import LogLevel, setup_logging
 
@@ -91,6 +92,19 @@ def print_specs(
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     print_system_specs(specs_file)
+
+
+@app.command("configure")
+def configure(
+    specs_file: ExistingSpecFileType = Path(f"{__home__}/.autorag/init/specs.yaml"),
+    log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
+) -> None:
+    """
+    :wrench: Configure the AutoRAG system based on the generated specs file.
+    """
+    print(f"AutoRAG Version: {__version__}")  # noqa: T201
+    setup_logging(log_level)
+    configure_system(specs_file)
 
 
 def main() -> None:
