@@ -9,6 +9,7 @@ from autorag import __version__
 from autorag.configure.configure_system import configure_system
 from autorag.init.generate_system_specs import generate_system_specs, print_system_specs
 from autorag.logging import LogLevel, setup_logging
+from autorag.run.run_system import run_system
 
 
 # Custom TyperGroup to list commands in the order appear
@@ -65,6 +66,8 @@ def init(
     force: Annotated[
         bool,
         typer.Option(
+            "--force",
+            "-f",
             help="If true, it overwrites existing specs file.",
         ),
     ] = False,
@@ -96,6 +99,7 @@ def print_specs(
 
 @app.command("configure")
 def configure(
+    *,
     specs_file: ExistingSpecFileType = Path(f"{__home__}/.autorag/init/specs.yaml"),
     log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
 ) -> None:
@@ -105,6 +109,27 @@ def configure(
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     configure_system(specs_file)
+
+
+@app.command("run")
+def run(
+    *,
+    background: Annotated[
+        bool,
+        typer.Option(
+            "--background",
+            "-bg",
+            help="If true, it overwrites existing specs file.",
+        ),
+    ] = True,
+    log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
+) -> None:
+    """
+    :wrench: Run the AutoRAG system based on the generated specs file.
+    """
+    print(f"AutoRAG Version: {__version__}")  # noqa: T201
+    setup_logging(log_level)
+    run_system(background=background)
 
 
 def main() -> None:
