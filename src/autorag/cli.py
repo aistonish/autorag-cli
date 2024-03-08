@@ -2,12 +2,28 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
+from click import Context
+from typer.core import TyperGroup
 
 from autorag import __version__
 from autorag.init.generate_system_specs import generate_system_specs, print_system_specs
 from autorag.logging import LogLevel, setup_logging
 
-__home__ = Path.home()
+
+# Custom TyperGroup to list commands in the order appear
+class OrderCommands(TyperGroup):
+    def list_commands(self, ctx: Context):
+        """Return list of commands in the order appear."""
+        return list(self.commands)  # get commands using self.commands
+
+
+app = typer.Typer(
+    name=f"AutoRAG {__version__}",
+    help="AutoRAG: Unleash On-Premise RAG Solutions for Enhanced Business Performance.",
+    rich_markup_mode="rich",
+    no_args_is_help=True,
+    cls=OrderCommands,
+)
 
 ExistingSpecFileType = Annotated[
     Path,
@@ -29,12 +45,7 @@ NonExistingSpecFileType = Annotated[
     ),
 ]
 
-app = typer.Typer(
-    name=f"AutoRAG {__version__}",
-    help="AutoRAG: Unleash On-Premise RAG Solutions for Enhanced Business Performance.",
-    rich_markup_mode="rich",
-    no_args_is_help=True,
-)
+__home__ = Path.home()
 
 
 @app.command("version")
