@@ -7,7 +7,7 @@ import GPUtil
 import psutil
 import srsly
 
-from autorag.init.system_specs import (
+from autorag.cli.commands.init.system_specs import (
     CPUSpecs,
     DiskSpecs,
     GPUSpecs,
@@ -15,7 +15,7 @@ from autorag.init.system_specs import (
     OSSpecs,
     SystemSpecs,
 )
-from autorag.logging import logger
+from autorag.cli.logging import logger
 
 
 def __get_os_specs() -> OSSpecs:

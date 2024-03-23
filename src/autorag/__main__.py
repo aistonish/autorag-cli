@@ -1,4 +1,4 @@
-from autorag.cli import main
+from autorag.cli.app import main
 
 if __name__ == "__main__":
     main()

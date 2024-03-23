@@ -1,5 +1,5 @@
-from autorag.init.generate_system_specs import generate_system_specs
-from autorag.init.system_specs import (
+from autorag.cli.commands.init.generate_system_specs import generate_system_specs
+from autorag.cli.commands.init.system_specs import (
     CPUSpecs,
     DiskSpecs,
     GPUSpecs,

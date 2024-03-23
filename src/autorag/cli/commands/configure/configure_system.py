@@ -1,12 +1,12 @@
 from pathlib import Path
 
-from autorag.init.generate_system_specs import read_system_specs
-from autorag.logging import logger
+from autorag.cli.commands.init.generate_system_specs import read_system_specs
+from autorag.cli.logging import logger
 
 
 def configure_system(specs_file: Path) -> None:
     """
-    :mag: Configure the AutoRAG :dizzy: system based on the generated specs file.
+    :mag: Configure the AutoRAG :dizzy: system based on the generated specs fetile.
     """
     logger.info(f"Configuring the AutoRAG system based on the specs file: {specs_file}")
     try:

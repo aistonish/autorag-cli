@@ -3,7 +3,7 @@ from pathlib import Path
 
 from typer.testing import CliRunner
 
-from autorag.cli import app
+from autorag.cli.app import app
 
 runner = CliRunner()
 

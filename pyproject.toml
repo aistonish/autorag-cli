@@ -39,8 +39,7 @@ dependencies = [
 dynamic = ["version"]
 
 [project.scripts]
-# Use `fibonacci` as command-line script, comment or remove this section if not needed.
-autorag = "autorag.cli:app"
+autorag = "autorag.cli.app:app"
 
 [project.urls]
 # important URLs for this project

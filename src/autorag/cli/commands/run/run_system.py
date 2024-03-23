@@ -1,4 +1,4 @@
-from autorag.logging import logger
+from autorag.cli.logging import logger
 
 
 def run_system(*, background: bool = True) -> None:

@@ -6,10 +6,13 @@ from click import Context
 from typer.core import TyperGroup
 
 from autorag import __version__
-from autorag.configure.configure_system import configure_system
-from autorag.init.generate_system_specs import generate_system_specs, print_system_specs
-from autorag.logging import LogLevel, setup_logging
-from autorag.run.run_system import run_system
+from autorag.cli.commands.configure.configure_system import configure_system
+from autorag.cli.commands.init.generate_system_specs import (
+    generate_system_specs,
+    print_system_specs,
+)
+from autorag.cli.commands.run.run_system import run_system
+from autorag.cli.logging import LogLevel, setup_logging
 
 
 # Custom TyperGroup to list commands in the order appear
@@ -52,11 +55,9 @@ __home__ = Path.home()
 
 @app.command("version")
 def version() -> None:
-    """
-    :bookmark: Print the version of AutoRAG:sparkles:
-    """
+    """:bookmark: Print the version of AutoRAG:sparkles:"""
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
-    raise SystemExit()
+    raise SystemExit
 
 
 @app.command("init")
@@ -73,9 +74,7 @@ def init(
     ] = False,
     log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
 ) -> None:
-    """
-    :rocket: Initialize AutoRAG:sparkles: by generating the system specs file
-    """
+    """:rocket: Initialize AutoRAG:sparkles: by generating the system specs file"""
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     generate_system_specs(
@@ -89,9 +88,7 @@ def print_specs(
     specs_file: ExistingSpecFileType = Path(f"{__home__}/.autorag/init/specs.yaml"),
     log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
 ) -> None:
-    """
-    :mag: Print the generated system specs file
-    """
+    """:mag: Print the generated system specs file"""
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     print_system_specs(specs_file)
@@ -103,9 +100,7 @@ def configure(
     specs_file: ExistingSpecFileType = Path(f"{__home__}/.autorag/init/specs.yaml"),
     log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
 ) -> None:
-    """
-    :wrench: Configure the AutoRAG system based on the generated specs file.
-    """
+    """:wrench: Configure the AutoRAG system based on the generated specs file."""
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     configure_system(specs_file)
@@ -124,9 +119,7 @@ def run(
     ] = True,
     log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
 ) -> None:
-    """
-    :wrench: Run the AutoRAG system based on the generated specs file.
-    """
+    """:wrench: Run the AutoRAG system based on the generated specs file."""
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     run_system(background=background)
