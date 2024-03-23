@@ -13,7 +13,6 @@ readme = "README.md"
 requires-python = ">=3.10"
 # only license identifier from https://spdx.org/licenses/ are allowed
 license = "MIT"
-license-files = { paths = ["LICENSE.txt"] }
 
 # keywords for easier look-up on PyPI
 keywords = ["rag", "ai", "aistonish"]
@@ -184,6 +183,12 @@ unfixable = [
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.ruff.lint]
+# select = ["ALL"]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 120
 
 [tool.ruff.isort]
 known-first-party = ["autorag"]
