@@ -74,7 +74,7 @@ def init(
     ] = False,
     log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
 ) -> None:
-    """:rocket: Initialize AutoRAG:sparkles: by generating the system specs file"""
+    """:dizzy: Initialize AutoRAG:sparkles: by generating the system specs file"""
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     generate_system_specs(
@@ -119,7 +119,7 @@ def run(
     ] = True,
     log_level: Annotated[LogLevel, typer.Option(help="Sets the Log Level")] = LogLevel.INFO,
 ) -> None:
-    """:wrench: Run the AutoRAG system based on the generated specs file."""
+    """:rocket: Run the AutoRAG system based on the generated specs file."""
     print(f"AutoRAG Version: {__version__}")  # noqa: T201
     setup_logging(log_level)
     run_system(background=background)
