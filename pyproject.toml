@@ -42,6 +42,8 @@ dynamic = ["version"]
 
 [project.scripts]
 autorag = "autorag.cli.app:app"
+autorag-cli = "autorag.cli.app:app"
+arcli = "autorag.cli.app:app"
 
 [project.urls]
 # important URLs for this project
